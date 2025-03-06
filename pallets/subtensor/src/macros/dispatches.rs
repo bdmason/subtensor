@@ -1501,6 +1501,7 @@ mod dispatches {
             discord: Vec<u8>,
             description: Vec<u8>,
             additional: Vec<u8>,
+            image_url: Vec<u8>,
         ) -> DispatchResult {
             Self::do_set_subnet_identity(
                 origin,
@@ -1512,6 +1513,7 @@ mod dispatches {
                 discord,
                 description,
                 additional,
+                image_url,
             )
         }
 

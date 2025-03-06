@@ -104,6 +104,7 @@ impl<T: Config> Pallet<T> {
         discord: Vec<u8>,
         description: Vec<u8>,
         additional: Vec<u8>,
+        image_url: Vec<u8>,
     ) -> dispatch::DispatchResult {
         // Ensure the call is signed and get the signer's (coldkey) account
         let coldkey = ensure_signed(origin)?;
@@ -123,6 +124,7 @@ impl<T: Config> Pallet<T> {
             discord,
             description,
             additional,
+            image_url,
         };
 
         // Validate the created identity
@@ -211,7 +213,8 @@ impl<T: Config> Pallet<T> {
             .saturating_add(1024)
             .saturating_add(256)
             .saturating_add(1024)
-            .saturating_add(1024);
+            .saturating_add(1024)
+            .saturating_add(256);
 
         total_length <= max_length
             && identity.subnet_name.len() <= 256
@@ -221,5 +224,6 @@ impl<T: Config> Pallet<T> {
             && identity.discord.len() <= 256
             && identity.description.len() <= 1024
             && identity.additional.len() <= 1024
+            && identity.image_url.len() <= 256
     }
 }
